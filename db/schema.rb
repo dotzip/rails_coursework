@@ -16,6 +16,13 @@ ActiveRecord::Schema.define(version: 20170501085108) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "clients", force: :cascade do |t|
+    t.string   "entity_name"
+    t.text     "bank_details"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
     t.integer  "attempts",   default: 0, null: false
@@ -31,6 +38,24 @@ ActiveRecord::Schema.define(version: 20170501085108) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "items", force: :cascade do |t|
+    t.float    "width"
+    t.float    "height"
+    t.float    "depth"
+    t.float    "weight"
+    t.date     "receipt_date"
+    t.integer  "contract_number"
+    t.integer  "place"
+    t.date     "contract_expiry_date"
+    t.integer  "client_id"
+    t.integer  "stack_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "items", ["client_id"], name: "index_items_on_client_id", using: :btree
+  add_index "items", ["stack_id"], name: "index_items_on_stack_id", using: :btree
 
   create_table "role_users", force: :cascade do |t|
     t.integer  "role_id",    null: false
@@ -53,6 +78,27 @@ ActiveRecord::Schema.define(version: 20170501085108) do
 
   add_index "roles", ["info"], name: "index_roles_on_info", unique: true, using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", unique: true, using: :btree
+
+  create_table "rooms", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "volume"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stacks", force: :cascade do |t|
+    t.integer  "number"
+    t.integer  "places"
+    t.float    "width"
+    t.float    "height"
+    t.float    "depth"
+    t.integer  "max_total_load"
+    t.integer  "room_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "stacks", ["room_id"], name: "index_stacks_on_room_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                                       null: false
@@ -96,6 +142,9 @@ ActiveRecord::Schema.define(version: 20170501085108) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
+  add_foreign_key "items", "clients"
+  add_foreign_key "items", "stacks"
   add_foreign_key "role_users", "roles"
   add_foreign_key "role_users", "users"
+  add_foreign_key "stacks", "rooms"
 end
