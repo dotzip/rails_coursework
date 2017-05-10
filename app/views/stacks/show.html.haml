@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Number:
+  = @stack.number
+%p
+  %b Places:
+  = @stack.places
+%p
+  %b Width:
+  = @stack.width
+%p
+  %b Height:
+  = @stack.height
+%p
+  %b Depth:
+  = @stack.depth
+%p
+  %b Max total load:
+  = @stack.max_total_load
+%p
+  %b Room:
+  = @stack.room
+
+= link_to 'Edit', edit_stack_path(@stack)
+\|
+= link_to 'Back', stacks_path

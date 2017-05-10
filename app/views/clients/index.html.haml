@@ -1,0 +1,23 @@
+%h1 Listing clients
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Entity name
+      %th Bank details
+      %th
+      %th
+      %th
+
+  %tbody
+    - @clients.each do |client|
+      %tr
+        %td= client.entity_name
+        %td= client.bank_details
+        %td= link_to 'Show', client
+        %td= link_to 'Edit', edit_client_path(client)
+        %td= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Client', new_client_path

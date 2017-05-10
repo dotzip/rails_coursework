@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :items
+  resources :clients
+  resources :stacks
+  resources :rooms
   resources :role_users
   resources :roles
   resources :password_resets

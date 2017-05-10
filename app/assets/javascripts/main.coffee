@@ -11,5 +11,5 @@ app_ready_f = ->
   loader_f()
   window.datepicker_activation()
 $(document).ready app_ready_f
-$(document).on 'page:load', app_ready_f
+$(document).on 'turbolinks:load', app_ready_f
  

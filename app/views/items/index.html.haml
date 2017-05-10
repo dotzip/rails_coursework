@@ -1,0 +1,39 @@
+%h1 Listing items
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Width
+      %th Height
+      %th Depth
+      %th Weight
+      %th Receipt date
+      %th Contract number
+      %th Place
+      %th Contract expiry date
+      %th Client
+      %th Stack
+      %th
+      %th
+      %th
+
+  %tbody
+    - @items.each do |item|
+      %tr
+        %td= item.width
+        %td= item.height
+        %td= item.depth
+        %td= item.weight
+        %td= item.receipt_date
+        %td= item.contract_number
+        %td= item.place
+        %td= item.contract_expiry_date
+        %td= item.client
+        %td= item.stack
+        %td= link_to 'Show', item
+        %td= link_to 'Edit', edit_item_path(item)
+        %td= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Item', new_item_path

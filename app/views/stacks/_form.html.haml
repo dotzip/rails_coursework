@@ -1,0 +1,31 @@
+= form_for @stack do |f|
+  - if @stack.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@stack.errors.count, "error")} prohibited this stack from being saved:"
+      %ul
+        - @stack.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :number
+    = f.number_field :number
+  .field
+    = f.label :places
+    = f.number_field :places
+  .field
+    = f.label :width
+    = f.text_field :width
+  .field
+    = f.label :height
+    = f.text_field :height
+  .field
+    = f.label :depth
+    = f.text_field :depth
+  .field
+    = f.label :max_total_load
+    = f.number_field :max_total_load
+  .field
+    = f.label :room
+    = f.text_field :room
+  .actions
+    = f.submit 'Save'

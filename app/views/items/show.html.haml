@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b Width:
+  = @item.width
+%p
+  %b Height:
+  = @item.height
+%p
+  %b Depth:
+  = @item.depth
+%p
+  %b Weight:
+  = @item.weight
+%p
+  %b Receipt date:
+  = @item.receipt_date
+%p
+  %b Contract number:
+  = @item.contract_number
+%p
+  %b Place:
+  = @item.place
+%p
+  %b Contract expiry date:
+  = @item.contract_expiry_date
+%p
+  %b Client:
+  = @item.client
+%p
+  %b Stack:
+  = @item.stack
+
+= link_to 'Edit', edit_item_path(@item)
+\|
+= link_to 'Back', items_path
