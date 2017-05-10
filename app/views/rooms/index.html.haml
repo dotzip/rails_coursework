@@ -3,8 +3,8 @@
 %table.table.table-bordered
   %thead
     %tr
-      %th Name
-      %th Volume
+      %th Название
+      %th Полезный объем
       %th
       %th
       %th
@@ -14,10 +14,10 @@
       %tr
         %td= room.name
         %td= room.volume
-        %td= link_to 'Show', room
-        %td= link_to 'Edit', edit_room_path(room)
-        %td= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Показать', room
+        %td= link_to 'Редактировать', edit_room_path(room)
+        %td= link_to 'Удалить', room, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Room', new_room_path
+= link_to 'Новая комната', new_room_path

@@ -6,35 +6,36 @@
         - @item.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .form-group
     = f.label :width
     = f.text_field :width
-  .field
+  .form-group
     = f.label :height
     = f.text_field :height
-  .field
+  .form-group
     = f.label :depth
     = f.text_field :depth
-  .field
+  .form-group
     = f.label :weight
     = f.text_field :weight
-  .field
+  .form-group
     = f.label :receipt_date
     = f.date_select :receipt_date
-  .field
+  .form-group
     = f.label :contract_number
     = f.number_field :contract_number
-  .field
+  .form-group
     = f.label :place
     = f.number_field :place
-  .field
+  .form-group
     = f.label :contract_expiry_date
     = f.date_select :contract_expiry_date
-  .field
+  .form-group
     = f.label :client
     = f.text_field :client
-  .field
+  .form-group
     = f.label :stack
     = f.text_field :stack
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-primary'
+%br

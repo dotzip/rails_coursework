@@ -1,15 +1,15 @@
-%h1 Listing stacks
+%h1 Список стеллажей
 
 %table.table.table-bordered
   %thead
     %tr
-      %th Number
-      %th Places
-      %th Width
-      %th Height
-      %th Depth
-      %th Max total load
-      %th Room
+      %th Номер
+      %th Количество мест
+      %th Ширина
+      %th Высота
+      %th Глубина
+      %th Максимальная сумм. нагрузка
+      %th ID Помещения
       %th
       %th
       %th
@@ -24,10 +24,10 @@
         %td= stack.depth
         %td= stack.max_total_load
         %td= stack.room
-        %td= link_to 'Show', stack
-        %td= link_to 'Edit', edit_stack_path(stack)
-        %td= link_to 'Destroy', stack, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Показать', stack
+        %td= link_to 'Редактировать', edit_stack_path(stack)
+        %td= link_to 'Удалить', stack, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Stack', new_stack_path
+= link_to 'Новый стеллаж', new_stack_path

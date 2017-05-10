@@ -6,26 +6,27 @@
         - @stack.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .form-group
     = f.label :number
     = f.number_field :number
-  .field
+  .form-group
     = f.label :places
     = f.number_field :places
-  .field
+  .form-group
     = f.label :width
     = f.text_field :width
-  .field
+  .form-group
     = f.label :height
     = f.text_field :height
-  .field
+  .form-group
     = f.label :depth
     = f.text_field :depth
-  .field
+  .form-group
     = f.label :max_total_load
     = f.number_field :max_total_load
-  .field
+  .form-group
     = f.label :room
     = f.text_field :room
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-primary'
+%br

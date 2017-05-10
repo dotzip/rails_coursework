@@ -6,11 +6,12 @@
         - @room.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .form-group
     = f.label :name
     = f.text_field :name
-  .field
+  .form-group
     = f.label :volume
     = f.number_field :volume
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-primary'
+%br

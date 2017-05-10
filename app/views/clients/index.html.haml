@@ -1,10 +1,10 @@
-%h1 Listing clients
+%h1 Список клиентов
 
 %table.table.table-bordered
   %thead
     %tr
-      %th Entity name
-      %th Bank details
+      %th Название организации
+      %th Банковские реквизиты
       %th
       %th
       %th
@@ -14,10 +14,10 @@
       %tr
         %td= client.entity_name
         %td= client.bank_details
-        %td= link_to 'Show', client
-        %td= link_to 'Edit', edit_client_path(client)
-        %td= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Показать', client
+        %td= link_to 'Редактировать', edit_client_path(client)
+        %td= link_to 'Удалить', client, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Client', new_client_path
+= link_to 'Новый клиент', new_client_path

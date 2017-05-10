@@ -6,11 +6,12 @@
         - @client.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .form-group
     = f.label :entity_name
     = f.text_field :entity_name
-  .field
+  .form-group
     = f.label :bank_details
     = f.text_area :bank_details
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-primary'
+%br
