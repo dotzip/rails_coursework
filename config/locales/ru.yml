@@ -37,8 +37,37 @@ ru:
       truncate: …
   activerecord:
     models:
+      room: Помещение
+      stack: Стеллаж
+      client: Клиент
+      item: Товар
       user: Пользователь
     attributes:
+      room:
+        name: Название
+        volume: Полезный объем
+      stack:
+        number: Номер
+        places: Количество мест
+        width: Ширина
+        height: Высота
+        depth: Глубина
+        max_total_load: Максимальная суммарная нагрузка
+        room: Номер комнаты
+      client:
+        entity_name: Название организации
+        bank_details: Банковские реквизиты
+      item:
+        width: Ширина
+        height: Высота
+        depth: Глубина
+        weight: Вес
+        receipt_date: Дата поступления
+        contract_number: Номер договора
+        place: Позиция на стеллаже
+        contract_expiry_date: Дата окончания договора
+        client: Идентификатор клинета
+        stack: Номер стеллажа
       user:
         email: Пользовательское имя/электронная почта
         birthday: Дата рождения
