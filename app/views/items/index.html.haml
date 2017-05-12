@@ -4,42 +4,42 @@
   %li
     Список товаров
 %br
-
-%table.table.table-bordered
-  %thead
-    %tr
-      %th Ширина
-      %th Высота
-      %th Глубина
-      %th Вес
-      %th Дата поставки
-      %th Номер договора
-      %th Место на стеллаже
-      %th Время окончания договора
-      %th ID Клиента
-      %th ID Стеллажа
-      %th
-      - if check_sudo
-        %th
-        %th
-
-  %tbody
-    - @items.each do |item|
+.table-responsive
+  %table.table.table-bordered
+    %thead
       %tr
-        %td= item.width
-        %td= item.height
-        %td= item.depth
-        %td= item.weight
-        %td= item.receipt_date
-        %td= item.contract_number
-        %td= item.place
-        %td= item.contract_expiry_date
-        %td= item.client
-        %td= item.stack
-        %td= link_to 'Показать', item
+        %th Ширина
+        %th Высота
+        %th Глубина
+        %th Вес
+        %th Дата поставки
+        %th Номер договора
+        %th Место на стеллаже
+        %th Время окончания договора
+        %th ID Клиента
+        %th ID Стеллажа
+        %th
         - if check_sudo
-          %td= link_to 'Редактировать', edit_item_path(item)
-          %td= link_to 'Удалить', item, method: :delete, data: { confirm: 'Are you sure?' }
+          %th
+          %th
+
+    %tbody
+      - @items.each do |item|
+        %tr
+          %td= item.width
+          %td= item.height
+          %td= item.depth
+          %td= item.weight
+          %td= item.receipt_date
+          %td= item.contract_number
+          %td= item.place
+          %td= item.contract_expiry_date
+          %td= item.client
+          %td= item.stack
+          %td= link_to 'Показать', item
+          - if check_sudo
+            %td= link_to 'Редактировать', edit_item_path(item)
+            %td= link_to 'Удалить', item, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 

@@ -4,36 +4,36 @@
   %li
     Список стеллажей
 %br
-
-%table.table.table-bordered
-  %thead
-    %tr
-      %th Номер
-      %th Количество мест
-      %th Ширина
-      %th Высота
-      %th Глубина
-      %th Максимальная сумм. нагрузка
-      %th ID Помещения
-      %th
-      - if check_sudo
-        %th
-        %th
-
-  %tbody
-    - @stacks.each do |stack|
+.table-responsive
+  %table.table.table-bordered
+    %thead
       %tr
-        %td= stack.number
-        %td= stack.places
-        %td= stack.width
-        %td= stack.height
-        %td= stack.depth
-        %td= stack.max_total_load
-        %td= stack.room
-        %td= link_to 'Показать', stack
+        %th Номер
+        %th Количество мест
+        %th Ширина
+        %th Высота
+        %th Глубина
+        %th Максимальная сумм. нагрузка
+        %th ID Помещения
+        %th
         - if check_sudo
-          %td= link_to 'Редактировать', edit_stack_path(stack)
-          %td= link_to 'Удалить', stack, method: :delete, data: { confirm: 'Are you sure?' }
+          %th
+          %th
+
+    %tbody
+      - @stacks.each do |stack|
+        %tr
+          %td= stack.number
+          %td= stack.places
+          %td= stack.width
+          %td= stack.height
+          %td= stack.depth
+          %td= stack.max_total_load
+          %td= stack.room
+          %td= link_to 'Показать', stack
+          - if check_sudo
+            %td= link_to 'Редактировать', edit_stack_path(stack)
+            %td= link_to 'Удалить', stack, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
