@@ -1,3 +1,11 @@
+=breadcrumb_tag do
+  %li.active
+    = t('headers.items.edit')
+  %li
+    = link_to 'Список товаров', items_path
+  %li
+    Создание товара
+%br
 = form_for @item do |f|
   - if @item.errors.any?
     #error_explanation
@@ -34,13 +42,13 @@
       .form-group
         = f.label :stack_id, "Выбор стеллажа из базы данных"
         = f.select :stack_id, Stack.all.collect{|s| [s.number, s.id]}, {:prompt => ""}  
-  %h2= "Выберите клиента из базы данных"
+  %h3= "Выберите клиента из базы данных"
   .row
     .col-md-6
       .form-group
         = f.label :client_id
         = f.select :client_id, Client.all.collect{|x| [x.entity_name, x.id]}, {:prompt => ""}
-  %h2= "Или добавьте нового клиента"
+  %h3= "Или добавьте нового клиента"
   = f.fields_for(:client) do |pf|
     .form-group
       = pf.label :entity_name
@@ -55,5 +63,6 @@
     .form-actions
       = f.submit 'Save', class: 'btn btn-primary'
   - else
-    %h3= "Вносить изменения(регистрировать новые) может только администратор"
+  %br
+    %h2= "Создавать или изменять записи в базе данных имеет право только администратор"
 %br

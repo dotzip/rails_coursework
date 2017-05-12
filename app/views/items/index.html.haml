@@ -19,8 +19,9 @@
       %th ID Клиента
       %th ID Стеллажа
       %th
-      %th
-      %th
+      - if check_sudo
+        %th
+        %th
 
   %tbody
     - @items.each do |item|
@@ -36,8 +37,9 @@
         %td= item.client
         %td= item.stack
         %td= link_to 'Показать', item
-        %td= link_to 'Редактировать', edit_item_path(item)
-        %td= link_to 'Удалить', item, method: :delete, data: { confirm: 'Are you sure?' }
+        - if check_sudo
+          %td= link_to 'Редактировать', edit_item_path(item)
+          %td= link_to 'Удалить', item, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 

@@ -39,7 +39,9 @@ class ApplicationController < ActionController::Base
 
   ## Проверка прав доступа выбранной роли для данного метода
   def check_ctr_auth()
-    return @current_role_user.try(:is_admin?)
+    if @current_role_user.try(:is_admin?) or @current_role_user.try(:is_operator?)
+      return true
+    end
   end
 
   def not_authenticated

@@ -1,3 +1,7 @@
+- if check_sudo
+  %h2= "Данная роль не имеет привелегий администрирования"
+- else
+
 %h1 Editing role
 
 = render 'form'

@@ -16,13 +16,11 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.build_client
-    @item.build_stack
   end
 
   # GET /items/1/edit
   def edit
     @item.build_client
-    @item.build_stack
   end
 
   # POST /items

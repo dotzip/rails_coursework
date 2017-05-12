@@ -1,3 +1,12 @@
+=breadcrumb_tag do
+  %li.active
+    = t('headers.stacks.new')
+  %li
+    = link_to 'Список стеллажей', stacks_path
+  %li
+    Создание стеллажа
+%br
+
 = form_for @stack do |f|
   - if @stack.errors.any?
     #error_explanation
@@ -25,13 +34,13 @@
       .form-group
         = f.label :max_total_load
         = f.number_field :max_total_load
-  %h2= "Выберите помещение из базы данных"
+  %h3= "Выберите помещение из базы данных"
   .row
     .col-md-6
       .form-group
         = f.label :room_id
         = f.select :room_id, Room.all.collect{|x| [x.name, x.id]}, {:prompt => ""}
-  %h2= "Или создайте новое помещение"
+  %h3= "Или создайте новое помещение"
   = f.fields_for(:room) do |pf|
     .form-group
       = pf.label :name
@@ -41,6 +50,9 @@
       = pf.number_field :volume
     .field
       = pf.hidden_field :id
-    .form-actions
-      = f.submit 'Save', class: 'btn btn-primary'
+      - if check_sudo
+        .form-actions
+          = f.submit 'Save', class: 'btn btn-primary'
+      - else
+        %h2= "Создавать или изменять записи в базе данных имеет право только администратор"
 %br

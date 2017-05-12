@@ -5,7 +5,6 @@
     Список стеллажей
 %br
 
-
 %table.table.table-bordered
   %thead
     %tr
@@ -17,8 +16,9 @@
       %th Максимальная сумм. нагрузка
       %th ID Помещения
       %th
-      %th
-      %th
+      - if check_sudo
+        %th
+        %th
 
   %tbody
     - @stacks.each do |stack|
@@ -31,8 +31,9 @@
         %td= stack.max_total_load
         %td= stack.room
         %td= link_to 'Показать', stack
-        %td= link_to 'Редактировать', edit_stack_path(stack)
-        %td= link_to 'Удалить', stack, method: :delete, data: { confirm: 'Are you sure?' }
+        - if check_sudo
+          %td= link_to 'Редактировать', edit_stack_path(stack)
+          %td= link_to 'Удалить', stack, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
