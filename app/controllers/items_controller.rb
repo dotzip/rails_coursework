@@ -15,10 +15,14 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
+    @item.build_client
+    @item.build_stack
   end
 
   # GET /items/1/edit
   def edit
+    @item.build_client
+    @item.build_stack
   end
 
   # POST /items
@@ -69,6 +73,7 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:width, :height, :depth, :weight, :receipt_date, :contract_number, :place, :contract_expiry_date, :client_id, :stack_id)
+      params.require(:item).permit(:width, :height, :depth, :weight, :receipt_date, :contract_number, :place, :contract_expiry_date, :client_id, :stack_id,
+      client_attributes: [:entity_name, :bank_details, :id, :_destroy])
     end
 end

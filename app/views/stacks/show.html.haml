@@ -1,3 +1,12 @@
+=breadcrumb_tag do
+  %li.active
+    = t('headers.stacks.show')
+  %li
+    = link_to 'Список стеллажей', stacks_path
+  %li
+    Просмотр cтеллажа
+%br
+
 %p#notice= notice
 
 %p

@@ -1,4 +1,11 @@
-%h1 Editing stack
+=breadcrumb_tag do
+  %li.active
+    = t('headers.stacks.edit')
+  %li
+    = link_to 'Список стеллажей', stacks_path
+  %li
+    Изменение стеллажа
+%br
 
 = render 'form'
 

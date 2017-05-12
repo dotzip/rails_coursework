@@ -1,4 +1,13 @@
-%h1 Editing item
+=breadcrumb_tag do
+  %li.active
+    = t('headers.items.edit')
+  %li
+    = link_to 'Список товаров', items_path
+  %li
+    Изменение товара
+    
+.page-header
+  %h1= t('headers.items.edit')
 
 = render 'form'
 

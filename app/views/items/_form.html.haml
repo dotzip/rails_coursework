@@ -5,37 +5,55 @@
       %ul
         - @item.errors.full_messages.each do |message|
           %li= message
+  .row
+    .col-md-6
+      .form-group
+        = f.label :width
+        = f.text_field :width
+      .form-group
+        = f.label :height
+        = f.text_field :height
+      .form-group
+        = f.label :depth
+        = f.text_field :depth
+      .form-group
+        = f.label :weight
+        = f.text_field :weight
+      .form-group
+        = f.label :receipt_date
+        = f.date_select :receipt_date
+      .form-group
+        = f.label :contract_number
+        = f.number_field :contract_number
+      .form-group
+        = f.label :place
+        = f.number_field :place
+      .form-group
+        = f.label :contract_expiry_date
+        = f.date_select :contract_expiry_date
+      .form-group
+        = f.label :stack_id, "Выбор стеллажа из базы данных"
+        = f.select :stack_id, Stack.all.collect{|s| [s.number, s.id]}, {:prompt => ""}  
+  %h2= "Выберите клиента из базы данных"
+  .row
+    .col-md-6
+      .form-group
+        = f.label :client_id
+        = f.select :client_id, Client.all.collect{|x| [x.entity_name, x.id]}, {:prompt => ""}
+  %h2= "Или добавьте нового клиента"
+  = f.fields_for(:client) do |pf|
+    .form-group
+      = pf.label :entity_name
+      = pf.text_field :entity_name
+    .form-group
+      = pf.label :bank_details
+      = pf.text_area :bank_details
+    .field
+      = pf.hidden_field :id
 
-  .form-group
-    = f.label :width
-    = f.text_field :width
-  .form-group
-    = f.label :height
-    = f.text_field :height
-  .form-group
-    = f.label :depth
-    = f.text_field :depth
-  .form-group
-    = f.label :weight
-    = f.text_field :weight
-  .form-group
-    = f.label :receipt_date
-    = f.date_select :receipt_date
-  .form-group
-    = f.label :contract_number
-    = f.number_field :contract_number
-  .form-group
-    = f.label :place
-    = f.number_field :place
-  .form-group
-    = f.label :contract_expiry_date
-    = f.date_select :contract_expiry_date
-  .form-group
-    = f.label :client
-    = f.text_field :client
-  .form-group
-    = f.label :stack
-    = f.text_field :stack
-  .actions
-    = f.submit 'Save', class: 'btn btn-primary'
+  - if check_sudo
+    .form-actions
+      = f.submit 'Save', class: 'btn btn-primary'
+  - else
+    %h3= "Вносить изменения(регистрировать новые) может только администратор"
 %br

@@ -16,7 +16,7 @@
         %td= client.bank_details
         %td= link_to 'Показать', client
         %td= link_to 'Редактировать', edit_client_path(client)
-        %td= link_to 'Удалить', client, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Удалить', client, method: :delete, data: { confirm: 'Вы уверены в этом? Связанные с клиентом товары также удалятся.' }
 
 %br
 

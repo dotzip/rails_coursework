@@ -15,10 +15,12 @@ class StacksController < ApplicationController
   # GET /stacks/new
   def new
     @stack = Stack.new
+    @stack.build_room
   end
 
   # GET /stacks/1/edit
   def edit
+    @stack.build_room
   end
 
   # POST /stacks
@@ -69,6 +71,7 @@ class StacksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stack_params
-      params.require(:stack).permit(:number, :places, :width, :height, :depth, :max_total_load, :room_id)
+      params.require(:stack).permit(:number, :places, :width, :height, :depth, :max_total_load, :room_id,
+        room_attributes: [:name, :volume, :id, :_destroy])
     end
 end

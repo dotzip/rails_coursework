@@ -5,28 +5,42 @@
       %ul
         - @stack.errors.full_messages.each do |message|
           %li= message
-
-  .form-group
-    = f.label :number
-    = f.number_field :number
-  .form-group
-    = f.label :places
-    = f.number_field :places
-  .form-group
-    = f.label :width
-    = f.text_field :width
-  .form-group
-    = f.label :height
-    = f.text_field :height
-  .form-group
-    = f.label :depth
-    = f.text_field :depth
-  .form-group
-    = f.label :max_total_load
-    = f.number_field :max_total_load
-  .form-group
-    = f.label :room
-    = f.text_field :room
-  .actions
-    = f.submit 'Save', class: 'btn btn-primary'
+  .row
+    .col-md-6
+      .form-group
+        = f.label :number
+        = f.number_field :number
+      .form-group
+        = f.label :places
+        = f.number_field :places
+      .form-group
+        = f.label :width
+        = f.text_field :width
+      .form-group
+        = f.label :height
+        = f.text_field :height
+      .form-group
+        = f.label :depth
+        = f.text_field :depth
+      .form-group
+        = f.label :max_total_load
+        = f.number_field :max_total_load
+  %h2= "Выберите помещение из базы данных"
+  .row
+    .col-md-6
+      .form-group
+        = f.label :room_id
+        = f.select :room_id, Room.all.collect{|x| [x.name, x.id]}, {:prompt => ""}
+  %h2= "Или создайте новое помещение"
+  = f.fields_for(:room) do |pf|
+    .form-group
+      = pf.label :name
+      = pf.text_field :name
+    .form-group
+      = pf.label :volume
+      = pf.number_field :volume
+    .field
+      = pf.hidden_field :id
+    .form-actions
+      = f.submit 'Save', class: 'btn btn-primary'
 %br
