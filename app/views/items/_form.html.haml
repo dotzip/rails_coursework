@@ -29,7 +29,10 @@
         = f.text_field :weight
       .form-group
         = f.label :receipt_date
-        = f.date_select :receipt_date
+        .input-group.date.datepicker
+          = f.text_field(:receipt_date, value: lnil(f.object.receipt_date), class: 'form-control')
+          %span.input-group-addon
+            %span.glyphicon.glyphicon-calendar
       .form-group
         = f.label :contract_number
         = f.number_field :contract_number
@@ -38,7 +41,10 @@
         = f.number_field :place
       .form-group
         = f.label :contract_expiry_date
-        = f.date_select :contract_expiry_date
+        .input-group.date.datepicker
+          = f.text_field(:contract_expiry_date, value: lnil(f.object.contract_expiry_date), class: 'form-control')
+          %span.input-group-addon
+            %span.glyphicon.glyphicon-calendar
       .form-group
         = f.label :stack_id, "Выбор стеллажа из базы данных"
         = f.select :stack_id, Stack.all.collect{|s| [s.number, s.id]}, {:prompt => ""}  
@@ -63,6 +69,6 @@
     .form-actions
       = f.submit 'Save', class: 'btn btn-primary'
   - else
-  %br
+    %br
     %h2= "Создавать или изменять записи в базе данных имеет право только администратор"
 %br
