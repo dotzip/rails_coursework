@@ -16,8 +16,8 @@
         %th Номер договора
         %th Место на стеллаже
         %th Время окончания договора
-        %th ID Клиента
-        %th ID Стеллажа
+        %th Клиент
+        %th Стеллаж
         %th
         - if check_sudo
           %th
@@ -34,8 +34,8 @@
           %td= item.contract_number
           %td= item.place
           %td= item.contract_expiry_date
-          %td= item.client
-          %td= item.stack
+          %td= item.client.entity_name
+          %td= item.stack.number
           %td= link_to 'Показать', item
           - if check_sudo
             %td= link_to 'Редактировать', edit_item_path(item)

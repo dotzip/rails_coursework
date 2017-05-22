@@ -1,11 +1,4 @@
-=breadcrumb_tag do
-  %li.active
-    = t('headers.stacks.new')
-  %li
-    = link_to 'Список стеллажей', stacks_path
-  %li
-    Создание стеллажа
-%br
+
 
 = form_for @stack do |f|
   - if @stack.errors.any?

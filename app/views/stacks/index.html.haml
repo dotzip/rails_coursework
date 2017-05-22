@@ -14,7 +14,7 @@
         %th Высота
         %th Глубина
         %th Максимальная сумм. нагрузка
-        %th ID Помещения
+        %th Помещение
         %th
         - if check_sudo
           %th
@@ -29,7 +29,7 @@
           %td= stack.height
           %td= stack.depth
           %td= stack.max_total_load
-          %td= stack.room
+          %td= stack.room.name
           %td= link_to 'Показать', stack
           - if check_sudo
             %td= link_to 'Редактировать', edit_stack_path(stack)

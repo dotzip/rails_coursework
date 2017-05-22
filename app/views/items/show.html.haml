@@ -35,10 +35,10 @@
   = @item.contract_expiry_date
 %p
   %b Client:
-  = @item.client
+  = @item.client.entity_name
 %p
   %b Stack:
-  = @item.stack
+  = @item.stack.number
 
 = link_to 'Edit', edit_item_path(@item)
 \|

@@ -1,4 +1,12 @@
+=breadcrumb_tag do
+  %li.active
+    = t('headers.items.new')
+  %li
+    = link_to 'Список товаров', items_path
+  %li
+    Создание товара
 %br
+
 %h1 New item
 
 = render 'form'
