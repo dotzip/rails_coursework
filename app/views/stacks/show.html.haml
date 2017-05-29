@@ -10,27 +10,27 @@
 %p#notice= notice
 
 %p
-  %b Number:
+  %b Номер:
   = @stack.number
 %p
-  %b Places:
+  %b Количество мест:
   = @stack.places
 %p
-  %b Width:
+  %b Ширина:
   = @stack.width
 %p
-  %b Height:
+  %b Высота:
   = @stack.height
 %p
-  %b Depth:
+  %b Глубина:
   = @stack.depth
 %p
-  %b Max total load:
+  %b Максимальная суммарная нагрузка:
   = @stack.max_total_load
 %p
-  %b Room:
+  %b Помещение:
   = @stack.room.name
 
-= link_to 'Edit', edit_stack_path(@stack)
+= link_to 'Редактировать', edit_stack_path(@stack), class: 'btn btn-success'
 \|
-= link_to 'Back', stacks_path
+= link_to 'Назад', stacks_path, class: 'btn btn-primary'

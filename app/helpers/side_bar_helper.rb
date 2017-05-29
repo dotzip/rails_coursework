@@ -33,7 +33,10 @@ module SideBarHelper
       {:name => 'Список товаров',
        :controller => :items, :action => :index,
        :icon => 'shopping-cart',
-       :class => 'long'}
+       :class => 'long'},
+      {:name => 'Поиск товаров',
+       :controller => :items, :action => :search,
+       :icon => 'search'}
     ]} 
     result
   end

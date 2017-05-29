@@ -1,0 +1,53 @@
+=breadcrumb_tag do
+  %li.active
+    = t('headers.items.search')
+  %li
+    =link_to 'Товары', items_path
+    
+.page-header
+  %h2 Поиск по товарам
+
+= form_tag search_items_path(), method: :get do
+  .well
+    .row.bottom20
+      .col-md-3
+        %p= "Ширина"
+        = text_field_tag 'search[width]', params['search']['width'], placeholder: 'Введите ширину'
+      .col-md-3
+        %p= "Высота"
+        = text_field_tag 'search[height]', params['search']['height'], placeholder: 'Введите высоту'
+      .col-md-3    
+        %p= "Глубина"
+        = text_field_tag 'search[depth]', params['search']['depth'], placeholder: 'Введите глубину'
+      .col-md-3
+        %p= "Вес"
+        = text_field_tag 'search[weight]', params['search']['weight'], placeholder: 'Введите вес'
+    .row
+      .col-md-3
+        %p= 'Дата поставки (промежуток с)'
+        = text_field_tag 'search[date_from]', params['search']['date_from'], placeholder: 'Начальная дата'
+      .col-md-3
+        %p= 'Дата поставки (промежуток до)'
+        = text_field_tag 'search[date_to]', params['search']['date_to'], placeholder: 'Конечная дата'
+  .actions
+    =submit_tag 'Поиск', class: 'btn btn-primary'
+%br
+
+%h2= "Найдено: " + @items.size.to_s
+
+-if @items.size > 0
+  .well.mysearch
+    .row
+      .col-md-4
+        .form-group
+          %dl
+          - @items.each do |f|
+            .well
+              %dt= 'Ширина'
+              %dd= f.width
+              %dt= 'Высота'
+              %dd= f.height
+              %dt= 'Глубина'
+              %dd= f.depth
+              %dt= 'Вес'
+              %dd= f.weight

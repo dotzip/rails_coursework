@@ -10,36 +10,36 @@
 %p#notice= notice
 
 %p
-  %b Width:
+  %b Ширина:
   = @item.width
 %p
-  %b Height:
+  %b Высота:
   = @item.height
 %p
-  %b Depth:
+  %b Глубина:
   = @item.depth
 %p
-  %b Weight:
+  %b Вес:
   = @item.weight
 %p
-  %b Receipt date:
+  %b Дата поставки:
   = @item.receipt_date
 %p
-  %b Contract number:
+  %b Номер договора:
   = @item.contract_number
 %p
-  %b Place:
+  %b Место на стеллаже:
   = @item.place
 %p
-  %b Contract expiry date:
+  %b Время окончания договора:
   = @item.contract_expiry_date
 %p
-  %b Client:
+  %b Клиент:
   = @item.client.entity_name
 %p
-  %b Stack:
+  %b Стеллаж:
   = @item.stack.number
 
-= link_to 'Edit', edit_item_path(@item)
+= link_to 'Редактировать', edit_item_path(@item), class: 'btn btn-success'
 \|
-= link_to 'Back', items_path
+= link_to 'Назад', items_path, class: 'btn btn-primary'  

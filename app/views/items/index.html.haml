@@ -5,7 +5,7 @@
     Список товаров
 %br
 .table-responsive
-  %table.table.table-bordered
+  %table.table.table-hover.table-striped.center
     %thead
       %tr
         %th Ширина
@@ -36,11 +36,13 @@
           %td= item.contract_expiry_date
           %td= item.client.entity_name
           %td= item.stack.number
-          %td= link_to 'Показать', item
+          %td= link_to 'Показать', item, class: 'btn btn-success'
           - if check_sudo
-            %td= link_to 'Редактировать', edit_item_path(item)
-            %td= link_to 'Удалить', item, method: :delete, data: { confirm: 'Are you sure?' }
+            %td
+              = link_to 'Редактировать', edit_item_path(item), class: 'btn btn-primary'
+            %td
+              = link_to 'Удалить', item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
 
 %br
 
-= link_to 'Добавить новый товар', new_item_path
+= link_to 'Добавить новый товар', new_item_path, class: 'btn btn-primary'

@@ -1,6 +1,18 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-
+  
+  # Search
+  # GET /items/search
+  def search
+    if params.has_key?('search')
+       @items = Item.search(params['search'])
+       #raise params.to_s
+    else
+       @items = []
+    end
+    params['search'] ||= {}
+  end
+    
   # GET /items
   # GET /items.json
   def index

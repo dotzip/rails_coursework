@@ -5,7 +5,7 @@
     Список стеллажей
 %br
 .table-responsive
-  %table.table.table-bordered
+  %table.table.table-hover.table-striped.center
     %thead
       %tr
         %th Номер
@@ -30,11 +30,11 @@
           %td= stack.depth
           %td= stack.max_total_load
           %td= stack.room.name
-          %td= link_to 'Показать', stack
+          %td= link_to 'Показать', stack, class: 'btn btn-success'
           - if check_sudo
-            %td= link_to 'Редактировать', edit_stack_path(stack)
-            %td= link_to 'Удалить', stack, method: :delete, data: { confirm: 'Are you sure?' }
+            %td= link_to 'Редактировать', edit_stack_path(stack), class: 'btn btn-primary'
+            %td= link_to 'Удалить', stack, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
 
 %br
 
-= link_to 'Новый стеллаж', new_stack_path
+= link_to 'Новый стеллаж', new_stack_path, class: 'btn btn-primary'

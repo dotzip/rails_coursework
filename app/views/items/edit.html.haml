@@ -7,10 +7,10 @@
     Изменение товара
  
 .page-header
-  %h1= t('headers.items.edit')
+  %h1 Редактирование товара
 
 = render 'form'
 
-= link_to 'Show', @item
+= link_to 'Показать', @item, class: 'btn btn-warning'
 \|
-= link_to 'Back', items_path
+= link_to 'Назад', items_path, class: 'btn btn-primary'
