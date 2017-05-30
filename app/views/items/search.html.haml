@@ -25,17 +25,17 @@
     .row.bottom20
       .col-md-3
         %p= 'Дата поставки (промежуток с)'
-        = date_field_tag 'search[date_from]', params['search']['date_from']
+        = date_field_tag 'search[date_from]', params['search']['date_from'], class: 'datepicker'
       .col-md-3
         %p= 'Дата поставки (промежуток до)'
-        = date_field_tag 'search[date_to]', params['search']['date_to']
+        = date_field_tag 'search[date_to]', params['search']['date_to'], class: 'datepicker'
     .row.bottom20
       .col-md-3
         %p= 'Дата окончания договора (промежуток с)'
-        = date_field_tag 'search[date2_from]', params['search']['date2_from']
+        = date_field_tag 'search[date2_from]', params['search']['date2_from'], class: 'datepicker'
       .col-md-3
         %p= 'Дата окончания договора (промежуток до)'
-        = date_field_tag 'search[date2_to]', params['search']['date2_to']
+        = date_field_tag 'search[date2_to]', params['search']['date2_to'], class: 'datepicker'
     .row.bottom20
       .col-md-3
         %p= "Номер места на стеллаже"
