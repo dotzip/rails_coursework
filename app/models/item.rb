@@ -6,13 +6,16 @@ class Item < ActiveRecord::Base
     validates :contract_number, uniqueness: true
 
   accepts_nested_attributes_for :client,
-	reject_if: proc{ |x| x['entity_name'].blank?},
+	#reject_if: proc{ |x| x['entity_name'].blank?},
 	allow_destroy: true	
         
   def self.search(params)
      result = Item.includes(:client, :stack).references(:client, :stack)
      max_date = Item.maximum("receipt_date")
      min_date = Item.minimum("receipt_date")
+     max_date2 = Item.maximum("contract_expiry_date")
+     min_date2 = Item.minimum("contract_expiry_date")
+      
       
     ### Поиск по размерам ###
      if params['width'].present?
@@ -32,7 +35,7 @@ class Item < ActiveRecord::Base
      end
      
       
-    ### Поиск по диапазону дат ###  
+    ### Поиск по диапазону дат (дата поставки) ###  
      if !params['date_from'].present? && !params['date_to'].present?
         result.all
      elsif params['date_from'].present? && params['date_to'].present?
@@ -43,8 +46,34 @@ class Item < ActiveRecord::Base
         result = result.where("receipt_date >= ? AND receipt_date <= ?", params['date_from'], max_date)
      end
       
+    ### Поиск по диапазону дат (дата окончания договора) ###  
+     if !params['date2_from'].present? && !params['date2_to'].present?
+        result.all
+     elsif params['date2_from'].present? && params['date2_to'].present?
+        result = result.where("contract_expiry_date >= ? AND contract_expiry_date <= ?", params['date2_from'], params['date2_to'])
+     elsif params['date2_from'].blank?
+        result = result.where("contract_expiry_date >= ? AND contract_expiry_date <= ?", min_date2, params['date2_to'])
+     elsif params['date2_to'].blank?
+        result = result.where("contract_expiry_date >= ? AND contract_expiry_date <= ?", params['date2_from'], max_date2)
+     end
       
+     ### Поиск по месту на стеллаже ###
+     if params['place'].present?
+       result = result.where(place: params['place'])
+     end
       
+     ### Поиск по номеру договора ###  
+     if params['contract_number'].present?
+       result = result.where(contract_number: params['contract_number'])
+     end
+     
+     ### Поиск по связям ###  
+     if params['stack_id'].present?
+       result = result.where(stacks: {number: params['stack_id']})
+     end
+     if params['client_id'].present?
+       result = result.where(clients: {entity_name: params['client_id']})
+     end
       
      result.all
   end

@@ -1,7 +1,10 @@
 = form_for @item do |f|
   - if @item.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@item.errors.count, "error")} prohibited this item from being saved:"
+      - if @item.errors.count > 1
+        %h2= "Допущено #{pluralize(@item.errors.count, "")} ошибок. Не удается сохранить объект:"
+      - else
+        %h2= "Допущена #{pluralize(@item.errors.count, "")} ошибка. Не удается сохранить объект:"
       %ul
         - @item.errors.full_messages.each do |message|
           %li= message

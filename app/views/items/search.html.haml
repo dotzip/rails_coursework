@@ -22,27 +22,48 @@
       .col-md-3
         %p= "Вес"
         = text_field_tag 'search[weight]', params['search']['weight'], placeholder: 'Введите вес'
-    .row
+    .row.bottom20
       .col-md-3
         %p= 'Дата поставки (промежуток с)'
-        = text_field_tag 'search[date_from]', params['search']['date_from'], placeholder: 'Начальная дата'
+        = date_field_tag 'search[date_from]', params['search']['date_from']
       .col-md-3
         %p= 'Дата поставки (промежуток до)'
-        = text_field_tag 'search[date_to]', params['search']['date_to'], placeholder: 'Конечная дата'
+        = date_field_tag 'search[date_to]', params['search']['date_to']
+    .row.bottom20
+      .col-md-3
+        %p= 'Дата окончания договора (промежуток с)'
+        = date_field_tag 'search[date2_from]', params['search']['date2_from']
+      .col-md-3
+        %p= 'Дата окончания договора (промежуток до)'
+        = date_field_tag 'search[date2_to]', params['search']['date2_to']
+    .row.bottom20
+      .col-md-3
+        %p= "Номер места на стеллаже"
+        = number_field_tag 'search[place]', params['search']['place'], placeholder: 'Место на стеллаже'
+      .col-md-3
+        %p= "Номер договора"
+        = number_field_tag 'search[contract_number]', params['search']['contract_number'], placeholder: 'Введите номер договора'
+    .row.bottom20
+      .col-md-3
+        %p= "Стеллаж"
+        = number_field_tag 'search[stack_id]', params['search']['stack_id'], placeholder: 'Номер стеллажа'
+      .col-md-3
+        %p= "Клиент"
+        = text_field_tag 'search[client_id]', params['search']['client_id'], placeholder: 'Наименование организации'
+    
+        
   .actions
     =submit_tag 'Поиск', class: 'btn btn-primary'
 %br
 
-%h2= "Найдено: " + @items.size.to_s
-
--if @items.size > 0
+-if @items.size >= 0
+  %h2= "Найдено: " + @items.size.to_s
   .well.mysearch
     .row
-      .col-md-4
-        .form-group
-          %dl
-          - @items.each do |f|
-            .well
+      - @items.each do |f|
+        .col-md-4
+          .well
+            %dl
               %dt= 'Ширина'
               %dd= f.width
               %dt= 'Высота'
@@ -51,3 +72,12 @@
               %dd= f.depth
               %dt= 'Вес'
               %dd= f.weight
+              %dt= 'Дата поставки'
+              %dd= f.receipt_date
+              %dt= 'Дата окончания договора'
+              %dd= f.contract_expiry_date
+              %dt= 'Номер договора'
+              %dd= f.contract_number
+              %dt= 'Место на стеллаже'
+              %dd= f.place
+            
