@@ -4,8 +4,16 @@
   %li
     Список стеллажей
 %br
+
+= link_to new_stack_path, class: 'btn btn-primary' do
+  = fa_icon :plus
+  = t('buttons.new.stack')
+
+
+%br 
+%br
 .table-responsive
-  %table.table.table-hover.table-striped.center
+  %table.table.table-hover.table-striped.center.my-table
     %thead
       %tr
         %th Номер
@@ -23,18 +31,35 @@
     %tbody
       - @stacks.each do |stack|
         %tr
-          %td= stack.number
-          %td= stack.places
-          %td= stack.width
-          %td= stack.height
-          %td= stack.depth
-          %td= stack.max_total_load
-          %td= stack.room.name
-          %td= link_to 'Показать', stack, class: 'btn btn-success'
+          %td{"data-label" => "Номер"}
+            %span= stack.number
+          %td{"data-label" => "Кол-во мест"}
+            %span= stack.places
+          %td{"data-label" => "Ширина"} 
+            %span= stack.width
+          %td{"data-label" => "Высота"}
+            %span= stack.height
+          %td{"data-label" => "Глубина"}
+            %span= stack.depth
+          %td{"data-label" => "Макс. сумм. нагрузка"}
+            %span= stack.max_total_load
+          %td{"data-label" => "Помещение"}
+            %span= stack.room.name
+          %td.td-hide
+            = link_to stack, class: 'btn btn-success' do
+              = fa_icon :eye
+              = t('buttons.show')
           - if check_sudo
-            %td= link_to 'Редактировать', edit_stack_path(stack), class: 'btn btn-primary'
-            %td= link_to 'Удалить', stack, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+            %td.td-hide
+              = link_to edit_stack_path(stack), class: 'btn btn-primary' do
+                = fa_icon :edit
+                = t('buttons.edit')
+            %td.td-hide
+              = link_to stack, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' do
+                = fa_icon :remove
+                = t('buttons.destroy')
+                
 
 %br
 
-= link_to 'Новый стеллаж', new_stack_path, class: 'btn btn-primary'
+

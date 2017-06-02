@@ -5,49 +5,56 @@
     =link_to 'Товары', items_path
     
 .page-header
-  %h2 Поиск по товарам
+  %h2 
+    Поиск по товарам 
+    %span.glyphicon.glyphicon-search
+  
 
 = form_tag search_items_path(), method: :get do
   .well
     .row.bottom20
-      .col-md-3
+      .col-md-3.col-sm-6.col-xs-9
         %p= "Ширина"
         = text_field_tag 'search[width]', params['search']['width'], placeholder: 'Введите ширину'
-      .col-md-3
+      .col-md-3.col-sm-6.col-xs-9
         %p= "Высота"
         = text_field_tag 'search[height]', params['search']['height'], placeholder: 'Введите высоту'
-      .col-md-3    
+      .col-md-3.col-sm-6.col-xs-9    
         %p= "Глубина"
         = text_field_tag 'search[depth]', params['search']['depth'], placeholder: 'Введите глубину'
-      .col-md-3
+      .col-md-3.col-sm-6.col-xs-9
         %p= "Вес"
         = text_field_tag 'search[weight]', params['search']['weight'], placeholder: 'Введите вес'
     .row.bottom20
-      .col-md-3
+      .col-md-4.col-sm-6.col-xs-9
         %p= 'Дата поставки (промежуток с)'
         = date_field_tag 'search[date_from]', params['search']['date_from'], class: 'datepicker'
-      .col-md-3
+        %span.glyphicon.glyphicon-calendar
+      .col-md-4.col-sm-6.col-xs-9
         %p= 'Дата поставки (промежуток до)'
         = date_field_tag 'search[date_to]', params['search']['date_to'], class: 'datepicker'
+        %span.glyphicon.glyphicon-calendar
     .row.bottom20
-      .col-md-3
+      .col-md-4.col-sm-6.col-xs-9
         %p= 'Дата окончания договора (промежуток с)'
         = date_field_tag 'search[date2_from]', params['search']['date2_from'], class: 'datepicker'
-      .col-md-3
+        %span.glyphicon.glyphicon-calendar
+      .col-md-4.col-sm-6.col-xs-9
         %p= 'Дата окончания договора (промежуток до)'
         = date_field_tag 'search[date2_to]', params['search']['date2_to'], class: 'datepicker'
+        %span.glyphicon.glyphicon-calendar  
     .row.bottom20
-      .col-md-3
+      .col-md-4.col-sm-6.col-xs-9
         %p= "Номер места на стеллаже"
         = number_field_tag 'search[place]', params['search']['place'], placeholder: 'Место на стеллаже'
-      .col-md-3
+      .col-md-4.col-sm-6.col-xs-9
         %p= "Номер договора"
         = number_field_tag 'search[contract_number]', params['search']['contract_number'], placeholder: 'Введите номер договора'
     .row.bottom20
-      .col-md-3
+      .col-md-4.col-sm-6.col-xs-9
         %p= "Стеллаж"
         = number_field_tag 'search[stack_id]', params['search']['stack_id'], placeholder: 'Номер стеллажа'
-      .col-md-3
+      .col-md-4.col-sm-6.col-xs-9
         %p= "Клиент"
         = text_field_tag 'search[client_id]', params['search']['client_id'], placeholder: 'Наименование организации'
     

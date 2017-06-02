@@ -4,8 +4,16 @@
   %li
     Список товаров
 %br
+
+= link_to new_item_path, class: 'btn btn-primary' do
+  = fa_icon :plus
+  = t('buttons.new.item')
+
+
+%br 
+%br
 .table-responsive
-  %table.table.table-hover.table-striped.center
+  %table.table.table-hover.table-striped.center.my-table
     %thead
       %tr
         %th Ширина
@@ -26,22 +34,39 @@
     %tbody
       - @items.each do |item|
         %tr
-          %td= item.width
-          %td= item.height
-          %td= item.depth
-          %td= item.weight
-          %td= item.receipt_date
-          %td= item.contract_number
-          %td= item.place
-          %td= item.contract_expiry_date
-          %td= item.client.entity_name
-          %td= item.stack.number
-          %td= link_to 'Показать', item, class: 'btn btn-success'
+          %td{"data-label" => "Ширина"}
+            %span= item.width
+          %td{"data-label" => "Высота"}
+            %span= item.height
+          %td{"data-label" => "Глубина"}
+            %span= item.depth
+          %td{"data-label" => "Вес"}
+            %span= item.weight
+          %td{"data-label" => "Дата поставки"}
+            %span= item.receipt_date
+          %td{"data-label" => "Номер договора"}
+            %span= item.contract_number
+          %td{"data-label" => "Место на стеллаже"} 
+            %span= item.place
+          %td{"data-label" => "Дата оконч. договора"}
+            %span= item.contract_expiry_date
+          %td{"data-label" => "Клиент"}
+            %span= item.client.entity_name
+          %td{"data-label" => "Стеллаж"}
+            %span= item.stack.number
+          %td.td-hide
+            = link_to item, class: 'btn btn-success' do
+              = fa_icon :eye
+              = t('buttons.show')
           - if check_sudo
-            %td
-              = link_to 'Редактировать', edit_item_path(item), class: 'btn btn-primary'
-            %td
-              = link_to 'Удалить', item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+            %td.td-hide
+              = link_to edit_item_path(item), class: 'btn btn-primary' do
+                = fa_icon :edit
+                = t('buttons.edit')
+            %td.td-hide
+              = link_to item, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' do
+                = fa_icon :remove
+                = t('buttons.destroy')
 
 %br
 

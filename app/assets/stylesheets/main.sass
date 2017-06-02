@@ -3,6 +3,7 @@
 .mysearch
   margin-bottom: 100px
 
+
 #wrapper
   margin-bottom: 100px
 
@@ -261,6 +262,51 @@ $paddings: (5 10 20 30 40 50)
     margin-left: #{$padding}px
   .mright#{$padding}
     margin-right: #{$padding}px
+
+
+
+// МЕДИА-ЗАПРОС ДЛЯ АДАПТИВНОСТИ ТАБЛИЦЫ
+@media (max-width: $screen-sm)
+  .my-table
+    border: 0
+    
+  .my-table thead
+    display: none
+
+  .my-table td:before
+    content: attr(data-label)
+    float: left
+    text-transform: uppercase
+    font-weight: bold
+    display: block
+    padding: 0 8px
+
+  .my-table tr
+    margin-bottom: 40px
+    display: block
+    border-bottom: 0
+    
+  .my-table td
+    display: block
+    border: 0
+    text-align: right
+    border-bottom: 1px solid #a0a0a0
+    width: 100%
+    height: 40px
+
+  .my-table td:last-child
+    border-bottom: 0
+
+  .my-table td .btn
+    display: block
+
+  .my-table .td-hide
+    border: 0
+    background: none
+    
+  .my-table td span
+    float: right
+    
 
 @media print
   a[href]:after
