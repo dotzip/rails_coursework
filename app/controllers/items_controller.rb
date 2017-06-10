@@ -27,12 +27,12 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
-    @item.build_client
+    #@item.build_client
   end
 
   # GET /items/1/edit
   def edit
-    @item.build_client
+    #@item.build_client
   end
 
   # POST /items
@@ -54,6 +54,7 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
+    #@client = Client.find(params[:client_id])  
     respond_to do |format|
       if @item.update(item_params)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
@@ -83,7 +84,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:width, :height, :depth, :weight, :receipt_date, :contract_number, :place, :contract_expiry_date, :client_id, :stack_id,
-      client_attributes: [:entity_name, :bank_details, :id, :_destroy])
+      params.require(:item).permit(:width, :height, :depth, :weight, :receipt_date, :contract_number, :place, :contract_expiry_date, :client_id, :stack_id, client_attributes: [:id, :_destroy, :entity_name, :bank_details])
     end
 end

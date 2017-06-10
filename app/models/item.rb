@@ -5,8 +5,7 @@ class Item < ActiveRecord::Base
     validates :width, :height, :depth, :weight, :receipt_date, :contract_number, :place, :contract_expiry_date, presence: true
     validates :contract_number, uniqueness: true
 
-  accepts_nested_attributes_for :client,
-	#reject_if: proc{ |x| x['entity_name'].blank?},
+  accepts_nested_attributes_for :client, :stack,
 	allow_destroy: true	
         
   def self.search(params)

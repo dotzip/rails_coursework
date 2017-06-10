@@ -48,20 +48,15 @@
     .col-md-6
       .form-group
         = f.label :client_id, 'Клиент'
-        = f.select :client_id, Client.all.collect{|x| [x.entity_name, x.id]}, {:prompt => ""}
-  = f.fields_for(:client) do |pf|
-    .form-group
-      = pf.label :entity_name
-      = pf.text_field :entity_name
-    .form-group
-      = pf.label :bank_details
-      = pf.text_area :bank_details
-    .field
-      = pf.hidden_field :id
-
+        = f.select :client_id, options_for_select(Client.all.map{|x| [x.entity_name, x.id]} + (@item.new_record? ? ["- Создание нового -"] : ["- Создание нового -", "- Редактирование -"]), f.object.client_id.nil? ? "- Создание нового -" : f.object.client_id), {include_blank: true}
+            
+  = f.fields_for :client, f.object.client || f.object.build_client do |pf|
+    %fieldset#client-fieldset{"data-content" => "#{render "client_form", pf: pf}"}
+      %div#client-fields
   - if check_sudo
+    %br
     .form-actions
-      = f.submit 'Сохранить', class: 'btn btn-success'
+      = f.submit 'Сохранить', class: 'btn btn-success', id: 'save'
   - else
     %br
     %h2= "Создавать или изменять записи в базе данных имеет право только администратор"

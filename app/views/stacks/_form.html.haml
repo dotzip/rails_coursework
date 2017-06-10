@@ -33,19 +33,15 @@
     .col-md-6
       .form-group
         = f.label :room_id, 'Помещение'
-        = f.select :room_id, Room.all.collect{|x| [x.name, x.id]}, {:prompt => ""}
-  = f.fields_for(:room) do |pf|
-    .form-group
-      = pf.label :name
-      = pf.text_field :name
-    .form-group
-      = pf.label :volume
-      = pf.number_field :volume
-    .field
-      = pf.hidden_field :id
-      - if check_sudo
-        .form-actions
-          = f.submit 'Сохранить', class: 'btn btn-success'
-      - else
-        %h2= "Создавать или изменять записи в базе данных имеет право только администратор"
+        = f.select :room_id, options_for_select(Room.all.map{|x| [x.name, x.id]} + (@stack.new_record? ? ["- Создание нового -"] : ["- Создание нового -", "- Редактирование -"]), f.object.room_id.nil? ? "- Создание нового -" : f.object.room_id), {include_blank: true}
+  = f.fields_for :room, f.object.room || f.object.build_room do |pf|
+    %fieldset#room-fieldset{"data-content" => "#{render "room_form", pf: pf}"}
+      %div#room-fields
+  - if check_sudo
+    %br
+    .form-actions
+      = f.submit 'Сохранить', class: 'btn btn-success', id: 'save'
+  - else
+    %br
+    %h2= "Создавать или изменять записи в базе данных имеет право только администратор"
 %br

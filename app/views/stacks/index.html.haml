@@ -55,11 +55,10 @@
                 = fa_icon :edit
                 = t('buttons.edit')
             %td.td-hide
-              = link_to stack, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' do
+              = link_to stack, method: :delete, data: { confirm: 'После удаления стеллажа, все товары на нем будут также удалены. Хотите продолжить?' }, class: 'btn btn-danger' do
                 = fa_icon :remove
                 = t('buttons.destroy')
                 
-
 %br
 
 
